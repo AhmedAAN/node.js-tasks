@@ -1,3 +1,5 @@
+//task 1
+
 function fizzbuzz(){
     let i;
     for (i = 1; i <= 15; i++){
@@ -16,3 +18,14 @@ function fizzbuzz(){
     }
 }
 fizzbuzz();
+
+//task 5
+
+function check50(num1, num2){
+    let sum = num1 + num2;
+    if (num1 == 50 || num2 == 50 || sum == 50){
+        return (true)
+    }
+    return (false)
+}
+console.log(check50(50, 20));
