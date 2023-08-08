@@ -105,7 +105,8 @@ function printRightTriangle(){
     for (let j = 0; j < i; j++){
       process.stdout.write("*");
     }
-    console.log();
+    console.log()
+  }
 }
 //-------------- Question 11 -------------
 function checkPosOrNeg(number){
