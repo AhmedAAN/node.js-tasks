@@ -57,10 +57,8 @@ function reverse(arr){
 //-------------- Question 8 --------------
 function convObjToArr(obj){
   const array = [];
-  i = 0;
   for (const [key, value] of Object.entries(object1)) {
-    array[i] = [key, value];
-    i++;
+    array.unshift([key, value]);
   }
   return(array);
 }
