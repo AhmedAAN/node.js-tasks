@@ -7,6 +7,24 @@ function checkOddOrEven(number){
     console.log("Number is Odd");
   }
 }
+//-------------- Question 2 --------------
+function fizzbuzz(){
+  let i;
+  for (i = 1; i <= 15; i++){
+    if (i % 3 == 0 && i % 5 == 0){
+      console.log("FizzBuzz");
+    }
+    else if (i % 3 == 0){
+      console.log("Fizz");
+    }
+    else if (i % 5 == 0){
+      console.log("Buzz");
+    }
+    else{
+      console.log(i);
+    }
+  }
+}
 //-------------- Question 3 --------------
 function reverseString(str) {
   let newString = "";
@@ -27,11 +45,11 @@ function calculateCircle(radius) {
 }
 //-------------- Question 5 --------------
 function check50(num1, num2){
-    let sum = num1 + num2;
-    if (num1 == 50 || num2 == 50 || sum == 50){
-        return (true)
-    }
-    return (false)
+  let sum = num1 + num2;
+  if (num1 == 50 || num2 == 50 || sum == 50){
+    return (true);
+  }
+  return (false);
 }
 console.log(check50(50, 20));
 //-------------- Question 6 --------------
