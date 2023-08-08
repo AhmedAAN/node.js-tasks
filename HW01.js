@@ -25,6 +25,15 @@ function calculateCircle(radius) {
     console.log("Error - radius must be a whole number greater than 0.");
   }
 }
+//-------------- Question 5 --------------
+function check50(num1, num2){
+    let sum = num1 + num2;
+    if (num1 == 50 || num2 == 50 || sum == 50){
+        return (true)
+    }
+    return (false)
+}
+console.log(check50(50, 20));
 //-------------- Question 6 --------------
 function positiveNegative(x, y){
   if ((x < 0 && y > 0) || x > 0 && y < 0) 
