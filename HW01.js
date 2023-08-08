@@ -1,3 +1,7 @@
+//Ahmed Abdelmoniem Ahmed Nagy
+//Node.js, Mansoura university
+
+
 //-------------- Question 1 --------------
 function checkOddOrEven(number){
   if(number % 2 == 0){
@@ -135,5 +139,33 @@ function factorial(number){
   console.log("The Factorial of", number, "is:", fact);
 }
 //-------------- Question 15 -------------
-
+function calculator(){
+  const operator = prompt("Enter operator ( either +, -, * or / ): ");
+  const number1 = parseFloat(prompt("Enter first number: "));
+  const number2 = parseFloat(prompt("Enter second number: "));
+  
+  let result;
+  switch (operator){
+    case ('+'):
+      result = number1 + number2;
+      break;
+    case ('-'):
+      result = number1 - number2;
+      break;
+    case ('*'):
+      result = number1 * number2;
+      break;
+    case ('/'):
+      if (numer2 == 0){
+        console.log("Cannot devide by 0");
+      }
+      else {
+        result = number1 / number2;
+      }
+      break;
+    default:
+      console.log("Please enter a valid operator");
+  }
+  console.log(`${number1} ${operator} ${number2} = ${result}`);
+}
 //----------------------------------------
