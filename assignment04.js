@@ -16,14 +16,22 @@ async function displayNewsCards() {
     for (let article of articles){
         const card = document.createElement('div');
         card.classList.add('card');
-        card.style.width = '18rem';
+        card.style.width = '50vw';
+        card.style.marginBottom = '20px';
+        const jsondate = article.publishedAt;
+        const date = JSON.stringify(jsondate).substring(1,11);
         
+
         card.innerHTML = `
             <img src="${article.urlToImage}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${article.title}</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">${article.author}</h6>
                 <p class="card-text">${article.description}</p>
                 <a href="${article.url}" class="btn btn-primary">Read Full Article</a>
+            </div>
+            <div class="card-footer text-left">
+                <small class="text-body-secondary">${date}</small>
             </div>
         `;
 
