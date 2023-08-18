@@ -76,7 +76,7 @@ class Employee {
         return this.salary * 12;
     }
     public raiseSalary(percent : number) : number{
-        let raise = this.salary * percent;
+        let raise = this.salary * (percent / 100);
         let newSalary = this.salary + raise;
 
         return newSalary;
