@@ -1,77 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Products</title>
-    <link
-      rel="stylesheet"
-      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="p-4 text-center mb-5 bg-dark text-light">Products</header>
-    <section class="container w-50 mx-auto mt-4 mb-5 product-form">
-      <form action="" id="add-product">
-        <div class="form-group my-2">
-          <label for="title">Product Name</label>
-          <input
-            type="text"
-            id="title"
-            class="form-control"
-            placeholder="Product Name"
-          />
-        </div>
-        <div class="form-group my-2">
-          <label for="price">Product Price</label>
-          <input
-            type="number"
-            id="price"
-            class="form-control"
-            placeholder="Product Price"
-            value=""
-          />
-        </div>
-        <div class="form-group my-2">
-          <label for="manufacturing">Product Manufacturing</label>
-          <input
-            type="text"
-            id="manufacturing"
-            class="form-control"
-            placeholder="Product Manufacturing"
-          />
-        </div>
-        <div class="form-group my-2">
-          <label for="description">Product Description</label>
-          <textarea
-            id="description"
-            class="form-control"
-            style="height: 20vh"
-          ></textarea>
-        </div>
-        <input type="submit" value="Add product" class="mt-2 btn btn-dark" />
-      </form>
-    </section>
-    <!-- Products List -->
-    <section class="products-list mt-4 mb-5 text-center">
-      <div class="container">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Product Name</th>
-              <th>Product Price</th>
-              <th>Product Manufacturing</th>
-              <th>Product Description</th>
-              <th>action</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
-    <script src="./node_modules/@popperjs/core/dist/umd/popper.js"></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./main.js"></script>
-  </body>
-</html>
+class Product {
+    constructor(name, price, manufacturing, description) {
+        this.name = name;
+        this.price = price;
+        this.manufacturing = manufacturing;
+        this.description = description;
+    }
+}
+class productUi {
+    static displayDummyData() {
+        const products = [
+            {
+                name: "Potato Peeler",
+                price: 50,
+                manufacturing: "al_araby",
+                description: "an amzing potato peeler"
+            },
+            {
+                name: "t-5000 screen",
+                price: 15000,
+                manufacturing: "samsung",
+                description: "an amazing smart screen"
+            }
+        ]
+
+        for (let product of products) {
+            productUi.displayProductsTable(product);
+        }
+    }
+
+    static displayProductsTable(product) {
+        const tbody = document.querySelector('tbody');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+        <td>${product.name}</td>
+        <td>${product.price}</td>
+        <td>${product.manufacturing}</td>
+        <td>${product.description}</td>
+        <td><a href="#" class="btn btn-danger delete-products" onclick="productUi.deleteElement(this)">delete</a></td>`;
+
+        tbody.appendChild(row)
+    }
+
+    static showMessage(message, alertClass) {
+        if (document.querySelector('.alert')) {
+            document.querySelector('.alert').remove();
+        }
+        const div = document.createElement('div');
+        div.className = `alert alert-${alertClass} my-2`;
+        div.appendChild(document.createTextNode(message));
+        const form = document.querySelector('#add-product');
+        const section = document.querySelector('.container');
+        section.insertBefore(div, form);
+
+        setTimeout(() => {
+            document.querySelector('.alert').remove();
+        }, 4000);
+    }
+
+    static deleteElement(element) {
+        element.parentElement.parentElement.remove();
+    }
+
+    static clearInputs() {
+        document.querySelector("#title").value = "";
+        document.querySelector("#price").value = "";
+        document.querySelector("#manufacturing").value = "";
+        document.querySelector("#description").value = "";
+    }
+}
+
+document.addEventListener('DOMContentLoaded', productUi.displayDummyData)
+
+document.querySelector("#add-product").addEventListener('submit', (e) => {
+    e.preventDefault();
+    const title = document.querySelector("#title").value;
+    const price = document.querySelector("#price").value;
+    const manufacturing = document.querySelector("#manufacturing").value;
+    const description = document.querySelector("#description").value;
+
+    if (title == '' || price == '' || manufacturing == '' || description == '') {
+        productUi.showMessage('all inputs are required', 'warning');
+    }
+    else {
+        productUi.clearInputs();
+        const product = new Product(title, price, manufacturing, description);
+        productUi.displayProductsTable(product);
+        productUi.showMessage("product added successfully", 'success')
+    }
+})
