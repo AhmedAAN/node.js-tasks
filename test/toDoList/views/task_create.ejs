@@ -1,0 +1,54 @@
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+    <div style="min-height: 80vh; margin: 0px 30px">
+      <%- include("./partials/content.ejs") %>
+
+      <form action="/tasks" method="post">
+        <div class="form-group">
+          <label for="title">Task Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            placeholder="Enter Task Name"
+            name="title"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="details"> Task Details </label>
+          <input
+            type="text"
+            class="form-control"
+            id="details"
+            placeholder="Enter Task Details"
+            name="details"
+            required
+          />
+        </div>
+
+        <div class="form-group form-check">
+          <label for="done"> Task Completed </label>
+          <input
+          style="border-color: black;"
+            type="checkbox"
+            class="form-check-input"
+            id="done"
+            name="done"
+            value="yes"
+            ></input>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+    <script>
+      home = document.getElementById("tasks");
+      home.classList.add("active");
+    </script>
+  </body>
+</html>

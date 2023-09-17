@@ -1,0 +1,15 @@
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+    <div style="height: 80vh">
+      <%- include("./partials/content.ejs") %>
+      <h2 class="text-center">Welcome to the To Do List website</h2>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+    <script>
+      home = document.getElementById("home");
+      home.classList.add("active");
+    </script>
+  </body>
+</html>
