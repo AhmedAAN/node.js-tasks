@@ -1,0 +1,81 @@
+<html lang="en">
+  <% task.done %>
+  <% const done = task.done %>
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+    <div style="min-height: 80vh; margin: 0px 30px">
+      <%- include("./partials/content.ejs") %>
+      <div class="text-center">
+        <h1><%= task.title %></h1>
+        <h3><%= task.details %></h3>
+        <div class="form-group">
+
+          <input
+            style="transform: translateY(-7px);
+            border-color: black;"
+            type="checkbox"
+            class="form-check-input"
+            id="done"
+            name="done"
+            onclick="return false"
+            <% if(done == true) { %>
+              checked
+              <% } %>
+          ></input>
+        </div>
+        <a
+          style="cursor: pointer"
+          class="delete btn btn-primary"
+          data-doc="<%= task._id %>"
+        >
+          Delete
+        </a>
+        <a
+          style="cursor: pointer"
+          class="Update btn btn-primary"
+          data-doc="<%= task._id %>"
+          href="/tasks/update/<%= task._id %>"
+        >
+          Update
+        </a>
+      </div>
+    </div>
+
+    <script>
+      const trashcan = document.querySelector("a.delete");
+      const update = document.querySelector("a.update");
+
+      trashcan.addEventListener("click", (e) => {
+        const endpoint = `/tasks/${trashcan.dataset.doc}`;
+        fetch(endpoint, { method: "DELETE" })
+          .then((response) => response.json())
+          .then((data) => {
+            window.location.href = data.redirect;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+      update.addEventListener("click", (e) => {
+        const endpoint = `/tasks/${update.dataset.doc}`;
+        console.log(endpoint);
+        fetch(endpoint, { method: "POST" })
+          .then((response) => console.log(response.json()))
+          .then((data) => {
+            window.location.href = data.redirect;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    </script>
+
+    <%- include("./partials/footer.ejs") %>
+
+    <script>
+      home = document.getElementById("tasks");
+      home.classList.add("active");
+    </script>
+  </body>
+</html>

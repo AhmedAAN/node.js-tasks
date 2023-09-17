@@ -1,0 +1,59 @@
+<html lang="en">
+  <% task.done %>
+  <% const done = task.done %>
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+    <div style="min-height: 80vh; margin: 0px 30px">
+      <%- include("./partials/content.ejs") %>
+
+      <form action="/tasks/update/<%= task._id %>" method="post">
+        <div class="form-group">
+          <label for="titel"> Task Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            value="<%= task.title %>"
+            name="title"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="details"> Task Details </label>
+          <input
+            type="text"
+            class="form-control"
+            id="details"
+            value="<%= task.details %>"
+            name="details"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="" for="done"> Task Completed </label>
+          <input
+          style="border-color: black;"
+            type="checkbox"
+            class="form-check-input"
+            id="done"
+            name="done"
+            value="yes"
+            
+            <% if(done == true) { %>
+              checked
+              <% } %>
+            ></input>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+    <script>
+      home = document.getElementById("tasks");
+      home.classList.add("active");
+    </script>
+  </body>
+</html>

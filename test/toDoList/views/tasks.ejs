@@ -1,0 +1,50 @@
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+    <div class="" style="min-height: 65vh; margin: 0px 30px">
+      <%- include("./partials/content.ejs") %>
+      <h3>Tasks:</h3>
+      <a
+        style="float: right; transform: translateY(-30px)"
+        class="btn btn-primary"
+        role="button"
+        href="./tasks/create"
+        >add tasks</a
+      >
+      <% if (tasks.length > 0) { %> <% tasks.forEach(task => { %>
+        <% task.done %>
+  <% const done = task.done %>
+      <div class="card text-center text-white bg-dark mb-3" style="width: 18rem">
+        <div class="card-body">
+          <a style="text-decoration: none;" href="/tasks/<%= task._id %>">
+            <h5 class="card-title"><%= task.title %></h5>
+          </a>
+          <p class="card-text"><%= task.details %></p>
+          <div class="form-group">
+
+          <input
+            style="transform: translateY(-7px);"
+            type="checkbox"
+            class="form-check-input"
+            id="done"
+            name="done"
+            onclick="return false"
+            <% if(done == true) { %>
+              checked
+              <% } %>
+          ></input>
+        </div>
+          <a href="/tasks/<%= task._id %>" class="btn btn-primary">Details</a>
+        </div>
+      </div>
+      <% }) %> <% } %>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+
+    <script>
+      home = document.getElementById("tasks");
+      home.classList.add("active");
+    </script>
+  </body>
+</html>
