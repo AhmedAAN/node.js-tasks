@@ -18,10 +18,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const sentTask = req.body;
-    const done = sentTask.done == "yes" ? true : false
-    sentTask.done = done;
-    const task = new Task(sentTask);
+    const task = new Task(req.body);
     task.save()
         .then((result) => {
             console.log('task saved');

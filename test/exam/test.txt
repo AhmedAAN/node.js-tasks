@@ -1,0 +1,70 @@
+Q1:
+
+[650, 440, 120, 40]
+
+Q2:
+
+27
+
+Q3:
+
+30
+
+Q4:
+
+[59.52, 83.7, 93]
+
+Q5:
+
+True
+False
+
+Q6:
+
+TypeError: assignment to a constant variable
+
+Q7:
+
+[ ['Batman'], ['Bane'] ]
+
+Q8:
+
+Number
+String
+undefine
+object
+object
+
+Q9:
+
+the coordinates of the mouse curser when clicked
+
+Q10:
+
+"Anonymous"
+"18"
+""
+""
+
+Q11:
+
+True
+
+Q12:
+
+2
+undefined
+
+Q13:
+
+{firstname: "john", lastname: "doe"}
+Error
+
+Q14:
+
+50
+
+Q15:
+
+[2, 2]
+
