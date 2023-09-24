@@ -1,0 +1,12 @@
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+    <div style="height: 80vh"><%- include("./partials/content.ejs") %></div>
+    <%- include("./partials/footer.ejs") %>
+    <script>
+      home = document.getElementById("home");
+      home.classList.add("active");
+    </script>
+  </body>
+</html>

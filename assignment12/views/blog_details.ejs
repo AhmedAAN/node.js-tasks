@@ -1,0 +1,65 @@
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+    <div style="min-height: 80vh; margin: 0px 30px">
+      <%- include("./partials/content.ejs") %>
+      <div class="text-center">
+        <h1><%= blog.title %></h1>
+        <h3><%= blog.text %></h3>
+        <p><%= blog.body %></p>
+        <a
+          style="cursor: pointer"
+          class="delete btn btn-primary"
+          data-doc="<%= blog._id %>"
+        >
+          Delete
+        </a>
+        <a
+          style="cursor: pointer"
+          class="Update btn btn-primary"
+          data-doc="<%= blog._id %>"
+          href="/blogs/update/<%= blog._id %>"
+        >
+          Update
+        </a>
+      </div>
+    </div>
+
+    <script>
+      const trashcan = document.querySelector("a.delete");
+      const update = document.querySelector("a.update");
+
+      trashcan.addEventListener("click", (e) => {
+        const endpoint = `/blogs/${trashcan.dataset.doc}`;
+        fetch(endpoint, { method: "DELETE" })
+          .then((response) => response.json())
+          .then((data) => {
+            window.location.href = data.redirect;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+      update.addEventListener("click", (e) => {
+        const endpoint = `/blogs/${update.dataset.doc}`;
+        console.log(endpoint);
+        fetch(endpoint, { method: "POST" })
+          .then((response) => console.log(response.json()))
+          .then((data) => {
+            window.location.href = data.redirect;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    </script>
+
+    <%- include("./partials/footer.ejs") %>
+
+    <script>
+      home = document.getElementById("blogs");
+      home.classList.add("active");
+    </script>
+  </body>
+</html>

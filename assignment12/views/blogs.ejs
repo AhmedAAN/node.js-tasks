@@ -1,0 +1,34 @@
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+    <div style="min-height: 65vh; margin: 0px 30px">
+      <%- include("./partials/content.ejs") %>
+      <h3>Blogs:</h3>
+      <a
+        style="float: right; transform: translateY(-30px)"
+        class="btn btn-primary"
+        role="button"
+        href="./blogs/create"
+        >add blogs</a
+      >
+      <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+      <div class="card text-center" style="width: 18rem">
+        <div class="card-body">
+          <a href="/blogs/<%= blog._id %>">
+            <h5 class="card-title"><%= blog.title %></h5>
+          </a>
+          <p class="card-text"><%= blog.text %></p>
+          <a href="/blogs/<%= blog._id %>" class="btn btn-primary">Read</a>
+        </div>
+      </div>
+      <% }) %> <% } %>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+
+    <script>
+      home = document.getElementById("blogs");
+      home.classList.add("active");
+    </script>
+  </body>
+</html>

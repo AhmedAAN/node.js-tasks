@@ -1,0 +1,56 @@
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav.ejs") %>
+    <div style="min-height: 80vh; margin: 0px 30px">
+      <%- include("./partials/content.ejs") %>
+
+      <form action="/blogs/update/<%= blog._id %>" method="post">
+        <div class="form-group">
+          <label for="titel"> Blog Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            value="<%= blog.title %>"
+            name="title"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="titel"> Blog Description </label>
+          <input
+            type="text"
+            class="form-control"
+            id="text"
+            value="<%= blog.text %>"
+            name="text"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="titel"> Blog Content </label>
+          <textarea
+            class="form-control"
+            id="body"
+            placeholder="<%= blog.body %>"
+            name="body"
+            rows="3"
+            required
+          >
+<%= blog.body %></textarea
+          >
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+    <%- include("./partials/footer.ejs") %>
+    <script>
+      home = document.getElementById("blogs");
+      home.classList.add("active");
+    </script>
+  </body>
+</html>
