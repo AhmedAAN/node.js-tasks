@@ -1,0 +1,58 @@
+<html lang="en">
+  <%- include("../partials/head.ejs") %>
+  <body>
+    <%- include("../partials/nav.ejs") %>
+      <div class="text-center">
+        <h1><%= note.name %></h1>
+        <p><%= note.content %></p>
+        <a
+        style="cursor: pointer"
+        class="Update btn btn-primary"
+        data-doc="<%= note._id %>"
+        href="/notes/update/<%= note._id %>"
+        >
+        Edit
+      </a>
+      <a
+        style="cursor: pointer"
+        class="delete btn btn-danger"
+        data-doc="<%= note._id %>"
+      >
+        Delete
+      </a>
+      </div>
+    </div>
+
+    <script>
+      const trashcan = document.querySelector("a.delete");
+      const update = document.querySelector("a.update");
+
+      trashcan.addEventListener("click", (e) => {
+        const endpoint = `/notes/${trashcan.dataset.doc}`;
+        fetch(endpoint, { method: "DELETE" })
+          .then((response) => response.json())
+          .then((data) => {
+            window.location.href = data.redirect;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+      update.addEventListener("click", (e) => {
+        const endpoint = `/notes/${update.dataset.doc}`;
+        console.log(endpoint);
+        fetch(endpoint, { method: "POST" })
+          .then((response) => console.log(response.json()))
+          .then((data) => {
+            window.location.href = data.redirect;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    </script>
+
+    <%- include("../partials/footer.ejs") %>
+
+  </body>
+</html>

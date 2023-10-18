@@ -3,11 +3,18 @@ require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
+const noteRoutes = require("./routes/noteRoutes");
 const port = process.env.PORT;
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
+app.set('view engine', 'ejs');
+
+app.use('/css', express.static('node_modules/bootstrap/dist/css'));
+app.use('/js', express.static('node_modules/bootstrap/dist/js'));
+app.use('/js', express.static('node_modules/jquery/dist'));
 
 const dburi = 'mongodb+srv://ahmednagy:test123@cluster0.jnhdmvn.mongodb.net/?retryWrites=true&w=majority';
 
@@ -21,4 +28,5 @@ mongoose.connect(dburi, { useNewUrlParser: true, useUnifiedTopology: true })
     .catch((err) => { console.log(err) });
 
 app.use(authRoutes);
+app.use(noteRoutes);
 
